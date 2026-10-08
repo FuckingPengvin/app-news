@@ -54,8 +54,8 @@ class UserLoginSerializer(serializers.Serializer):
                 )
 
             if not user.is_active:
-            raise serializers.ValidationError(
-                'User account is disabled.'
+                raise serializers.ValidationError(
+                    'User account is disabled.'
             )
 
             attrs['user'] = user
