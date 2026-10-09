@@ -65,7 +65,7 @@ class ProfileView(generics.RetrieveUpdateAPIView):
         return self.request.user
 
     def get_serializer_class(self):
-        if self.request.method == 'PUT' or self.request.method == 'PATH':
+        if self.request.method == 'PUT' or self.request.method == 'PATCH':
             return UserUpdateSerializer
         return UserProfileSerializer
 
@@ -87,12 +87,13 @@ class ChangePasswordView(generics.UpdateAPIView):
             'message': 'Password change successfully'
         }, status=status.HTTP_200_OK)
 
+
 @api_view(['POST'])
 @permission_classes([permissions.IsAuthenticated])
-def logout_view(requset):
+def logout_view(request):
     """Выход пользователя"""
     try:
-        refresh_token = requset.data.get('refresh_token')
+        refresh_token = request.data.get('refresh_token')
         if refresh_token:
             token = RefreshToken(refresh_token)
             token.blacklist()
