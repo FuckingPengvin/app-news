@@ -3,7 +3,7 @@ from django.utils.text import slugify
 from .models import Category, Post
 
 
-class CategorySerializers(serializers.ModelSerializer):
+class CategorySerializer(serializers.ModelSerializer):
     """Сериализатор для категорий"""
     posts_count = serializers.SerializerMethodField()
 
@@ -20,7 +20,7 @@ class CategorySerializers(serializers.ModelSerializer):
         return super().create(validated_data)
 
 
-class PostSerializer(serializers.ModelSerializer):
+class PostListSerializer(serializers.ModelSerializer):
     """Сериализатор для списка постов"""
     author = serializers.StringRelatedField()
     category = serializers.StringRelatedField()

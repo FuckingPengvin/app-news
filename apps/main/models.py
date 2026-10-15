@@ -52,6 +52,7 @@ class Post(models.Model):
     )
     status = models.CharField(max_length=10, choices=STATUS_CHOICES, default='published')
     created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
     views_count = models.PositiveIntegerField(default=0)
 
     class Meta:
